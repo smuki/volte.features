@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+    - name: Get version
+      id: get_version
+      run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} 
+          sed -in-place "s#1.2.3.4#${{ steps.get_version.outputs.VERSION }}#g" .Volte.Features.csproj      
     - name: Restore dependencies
       run: dotnet restore
       working-directory: ./src/      
@@ -31,7 +36,6 @@ jobs:
       working-directory: ./src/      
     - name: Package Release
       run: | 
-          sed -in-place "s#1.2.3.4#$CI_BUILD_TAG#g" .Volte.Features.csproj
           dotnet pack -c Release -o ../out
       working-directory: ./src/      
     - name: Publish Nuget to GitHub registry
