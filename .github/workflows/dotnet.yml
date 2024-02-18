@@ -23,8 +23,8 @@ jobs:
     - name: Get version
       id: get_version
       run: |
-          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} 
-          sed -in-place "s#1.2.3.4#${{ steps.get_version.outputs.VERSION }}#g" .Volte.Features.csproj  
+          echo ::save-state name=VERSION::${GITHUB_REF/refs\/tags\//} 
+          sed -in-place "s#1.2.3.4#${{ steps.get_version.outputs.VERSION }}#g" ./Volte.Features.csproj  
       working-directory: ./src/          
     - name: Restore dependencies
       run: dotnet restore
