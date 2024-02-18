@@ -29,8 +29,7 @@ jobs:
           echo ${{ github.ref }} | cut -d "." -f1,2,3  | cut -d "/" -f3
           echo ::save-state name=VERSION::${{ github.ref }} | cut -d "." -f1,2,3  | cut -d "/" -f3
           export PackageVersion=`echo ${{ github.ref }} | cut -d "/" -f3`
-          #echo a-${PackageVersion}-b
-          sed -in-place "s#1.2.3.4#${{PackageVersion}}#g" ./Volte.Features.csproj  
+          sed -in-place "s#1.2.3.4#${PackageVersion}#g" ./Volte.Features.csproj  
       working-directory: ./src/          
     - name: Restore dependencies
       run: dotnet restore
