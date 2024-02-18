@@ -25,7 +25,7 @@ jobs:
     - name: list folder
       run: pwd
     - name: change folder
-      run: cd src        
+      run: cd ./src        
 
     - name: Restore dependencies
       run: dotnet restore
