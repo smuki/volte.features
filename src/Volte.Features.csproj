@@ -17,4 +17,10 @@
       </PackageReference>
       <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyVersion>8.0.0.0</AssemblyVersion>
+    <FileVersion>1.2.3.4</FileVersion>
+  </PropertyGroup>
+    
 </Project>
