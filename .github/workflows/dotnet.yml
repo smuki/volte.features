@@ -34,5 +34,5 @@ jobs:
           dotnet pack -c Release -o ../out
       working-directory: ./src/      
     - name: Publish Nuget to GitHub registry
-      run: dotnet nuget push ./*.nupkg -s https://nuget.pkg.github.com/smuki/index.json -k ${{secrets.TOKEN}}  
+      run: dotnet nuget push ./*.nupkg -s https://nuget.pkg.github.com/smuki/index.json -k ${{secrets.TOKEN}} --skip-duplicate 
       working-directory: ./out/      
