@@ -32,6 +32,7 @@ jobs:
           echo ${PackageVersion}
           echo a-${PackageVersion}-b          
           sed -in-place "s#1.2.3.4#${PackageVersion}#g" ./Volte.Features.csproj  
+          cat ./Volte.Features.csproj  
       working-directory: ./src/          
     - name: Restore dependencies
       run: dotnet restore
