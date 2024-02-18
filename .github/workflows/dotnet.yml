@@ -31,6 +31,7 @@ jobs:
       working-directory: ./src/      
     - name: Package Release
       run: | 
+          sed -in-place "s#1.2.3.4#$CI_BUILD_TAG#g" .Volte.Features.csproj
           dotnet pack -c Release -o ../out
       working-directory: ./src/      
     - name: Publish Nuget to GitHub registry
