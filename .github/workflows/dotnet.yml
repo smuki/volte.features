@@ -23,12 +23,13 @@ jobs:
     - name: Get version
       id: get_version
       run: |
-          echo ::save-state name=VERSION::${GITHUB_REF/refs\/tags\//} 
           echo ${{ steps.get_version.outputs.VERSION }}
           echo ${{ github.ref }}
           echo ${{ github.ref }} | cut -d "." -f1,2,3  | cut -d "/" -f3
           echo ::save-state name=VERSION::${{ github.ref }} | cut -d "." -f1,2,3  | cut -d "/" -f3
           export PackageVersion=`echo ${{ github.ref }} | cut -d "/" -f3`
+          echo ::save-state name=VERSION::${PackageVersion}
+          echo ${PackageVersion}
           sed -in-place "s#1.2.3.4#${PackageVersion}#g" ./Volte.Features.csproj  
       working-directory: ./src/          
     - name: Restore dependencies
