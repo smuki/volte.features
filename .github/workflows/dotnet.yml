@@ -20,8 +20,13 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+    - name: list folder
+      run: ls
+    - name: list folder
+      run: pwd
     - name: change folder
       run: cd src        
+
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
