@@ -21,16 +21,9 @@ jobs:
       with:
         PROJECT_FILE_PATH: src/Volte.Features.csproj      
         dotnet-version: 6.0.x
-    - name: list folder
-      run: ls
-    - name: pwd
-      run: pwd
-    - name: change folder
-      run: cd ./src        
-    - name: list folder
-      run: ls
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: ./src/      
     - name: Build
       run: dotnet build --no-restore
     - name: Test
