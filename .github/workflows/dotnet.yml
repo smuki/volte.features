@@ -19,6 +19,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
+        PROJECT_FILE_PATH: src/Volte.Features.csproj      
         dotnet-version: 6.0.x
     - name: list folder
       run: ls
