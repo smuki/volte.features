@@ -24,6 +24,7 @@ jobs:
       id: get_version
       run: |
           echo ::save-state name=VERSION::${GITHUB_REF/refs\/tags\//} 
+          echo ${{ steps.get_version.outputs.VERSION }}
           sed -in-place "s#1.2.3.4#${{ steps.get_version.outputs.VERSION }}#g" ./Volte.Features.csproj  
       working-directory: ./src/          
     - name: Restore dependencies
