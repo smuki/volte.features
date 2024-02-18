@@ -29,8 +29,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       working-directory: ./src/      
-    - name: Publish
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-        PROJECT_FILE_PATH: src/Volte.Features.csproj      
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Package Release
+      run: | 
+          cd [SOLUTION_FOLDER]
+          dotnet pack -c Release -o out
+    - name: Publish Nuget to GitHub registry
+      run: dotnet nuget push ./[SOLUTION_FOLDER]/[PROJECT_FOLDER]/out/$(ls ./[SOLUTION_FOLDER]/[PROJECT_FOLDER]/out) -s https://nuget.pkg.github.com/[USERNAME]/index.json -k ${GITHUB_TOKEN}  
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
