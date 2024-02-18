@@ -26,7 +26,7 @@ jobs:
           echo ::save-state name=VERSION::${GITHUB_REF/refs\/tags\//} 
           echo ${{ steps.get_version.outputs.VERSION }}
           echo ${{ github.ref }}
-          echo `echo ${{ github.ref }} | cut -d "." -f1,2,3`
+          echo ${{ github.ref }} | cut -d "." -f1,2,3
           
           sed -in-place "s#1.2.3.4#${{ steps.get_version.outputs.VERSION }}#g" ./Volte.Features.csproj  
       working-directory: ./src/          
